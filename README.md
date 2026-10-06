@@ -18,3 +18,25 @@ GitHub Pages está desactivado hasta que Cris lo confirme.
 - Sin «prestigio», «a nivel nacional» ni superlativos.
 - Sin chatbot, sin formularios, sin Supabase y sin claves de ningún tipo en el cliente.
 - Las fotos son de Pexels y van como ambiente: no representan instalaciones ni productos de Maderas López, y ninguna se rotula como eucalipto, pino, tabla limpia ni tabla de carpintería.
+
+## Qué hay
+
+- `index.html`, `assets/css/style.css`, `assets/js/` — HTML, CSS y JS puros, sin frameworks ni dependencias.
+- `assets/js/config.js` — datos de contacto de la serrería en una sola constante. El HTML lleva los mismos valores como respaldo para quien navega sin JavaScript: si se cambia uno, se cambia el otro.
+- `assets/fonts/` — Bricolage Grotesque variable (licencia OFL), subset latin, auto-hospedada.
+- `scripts/verifica-contraste.py` — mide el contraste AA de la paleta y el peor píxel real de la foto bajo el texto del hero.
+
+## Probar en local
+
+```
+python -m http.server 8765
+python scripts/verifica-contraste.py
+```
+
+El script necesita Pillow (`pip install pillow`). Si se toca la paleta o el velo del hero en `style.css`, hay que tocarlos igual en el script.
+
+## Imágenes
+
+Fotografías de Pexels, bajo licencia Pexels, revisadas a tamaño completo: sin personas y sin rótulos ni marcas legibles.
+
+- Hero: [Mark Stebnicki](https://www.pexels.com/photo/pile-of-wood-planks-inside-a-warehouse-12278570/).
