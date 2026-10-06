@@ -4,18 +4,21 @@
    ========================================================================= */
 (() => {
   "use strict";
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
 
   /* ---------- Datos de la demo (config.js) ----------
      data-demo="nombre|razonSocial|telefono|email|direccion" pinta el texto;
-     data-demo-href="tel|mailto" pinta el enlace. Siempre con textContent y
-     setAttribute, nunca con innerHTML. */
+     data-demo-href="tel|mailto|wa" pinta el enlace. Siempre con textContent y
+     setAttribute, nunca con innerHTML. El enlace "wa" es el de la burbuja:
+     WhatsApp de WhiteMoon Agencia IA con el mensaje prellenado. */
   const demo = window.DEMO;
   if (demo) {
     const href = {
       tel: "tel:" + demo.telefonoE164,
       mailto: "mailto:" + demo.email,
+      wa: "https://wa.me/" + demo.whatsapp.numero + "?text=" + encodeURIComponent(demo.whatsapp.texto),
     };
     $$("[data-demo]").forEach((el) => {
       const v = demo[el.dataset.demo];
@@ -75,6 +78,74 @@
     window.matchMedia("(min-width: 901px)").addEventListener("change", (e) => {
       if (e.matches) setMenu(false);
     });
+  }
+
+  /* ---------- Scroll-spy del nav ----------
+     Manda "la última sección rebasada". Las posiciones se miden la primera
+     vez que hacen falta y se vuelven a medir si cambia el tamaño. */
+  const spy = $$("#navLinks a");
+  const zonas = spy.map((a) => $(a.getAttribute("href"))).filter(Boolean);
+  if (spy.length && zonas.length) {
+    let marcas = null;
+    let ultima = null;
+    let pendiente = false;
+    const medir = () => {
+      marcas = zonas.map((z) => ({ id: z.id, top: z.getBoundingClientRect().top + window.scrollY - 160 }));
+    };
+    const marcar = () => {
+      pendiente = false;
+      if (!marcas) medir();
+      const y = window.scrollY;
+      /* En el hero no hay enlace que marcar: `actual` se queda en null. */
+      let actual = null;
+      marcas.forEach((m) => { if (y >= m.top) actual = m.id; });
+      /* Al fondo de la página manda la última, aunque sea corta. */
+      if (y > 0 && window.innerHeight + y >= document.documentElement.scrollHeight - 2) actual = marcas[marcas.length - 1].id;
+      if (actual === ultima) return;
+      ultima = actual;
+      spy.forEach((a) => {
+        const on = a.getAttribute("href") === "#" + actual;
+        a.classList.toggle("active", on);
+        if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+      });
+    };
+    const pedir = () => {
+      if (pendiente) return;
+      pendiente = true;
+      requestAnimationFrame(marcar);
+    };
+    window.addEventListener("scroll", pedir, { passive: true });
+    window.addEventListener("resize", () => { marcas = null; pedir(); }, { passive: true });
+    window.addEventListener("load", () => { marcas = null; if (window.scrollY > 0) pedir(); });
+  }
+
+  /* ---------- Reveal al hacer scroll ----------
+     Nada se oculta de antemano. El observer avisa una primera vez con el
+     estado de cada elemento: lo que está por debajo de la pantalla se marca
+     .pre (oculto, a la espera) y se revela al entrar. Lo que ya se ve, o
+     queda por encima, no se toca. */
+  const reveals = $$(".reveal");
+  if (reveals.length && "IntersectionObserver" in window && !reduced) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e, n) => {
+          const el = e.target;
+          if (e.isIntersecting) {
+            if (el.classList.contains("pre")) {
+              el.style.transitionDelay = Math.min(n * 60, 240) + "ms";
+              el.classList.add("in");
+            }
+            io.unobserve(el);
+          } else if (e.boundingClientRect.top > 0) {
+            el.classList.add("pre");
+          } else {
+            io.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -5% 0px" }
+    );
+    reveals.forEach((el) => io.observe(el));
   }
 
   /* ---------- Año del footer ---------- */

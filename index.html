@@ -29,6 +29,8 @@
   <symbol id="ic-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
   <symbol id="ic-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 7 9 6 9-6"/></symbol>
   <symbol id="ic-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="ic-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+  <symbol id="ic-wa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 20.5l1.6-5.6A8.4 8.4 0 1 1 21 11.5z"/><path d="M8.8 9c.2-.5.4-.5.7-.5h.6c.2 0 .4 0 .6.5l.7 1.6c.1.3 0 .5-.1.7l-.4.5c-.1.2-.3.4-.1.7a6 6 0 0 0 2.7 2.3c.3.1.5 0 .7-.2l.5-.6c.2-.2.4-.2.6-.1l1.6.8c.2.1.4.2.4.4a1.8 1.8 0 0 1-1.3 1.7 3.7 3.7 0 0 1-2.7-.5 10 10 0 0 1-4.5-4.4 3.5 3.5 0 0 1-.6-2.1c0-.4.3-.7.6-.8z"/></symbol>
   <symbol id="ic-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
 </svg>
 
@@ -41,6 +43,9 @@
     </a>
     <div class="nav-cta">
       <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
+        <a href="#productos">Productos</a>
+        <a href="#medida">Cortes a medida</a>
+        <a href="#consultar">Cómo consultar</a>
         <a href="#contacto">Contacto</a>
       </nav>
       <a class="btn btn--sm" href="tel:+34981518251" data-demo-href="tel"><svg aria-hidden="true"><use href="#ic-phone"/></svg>Llamar</a>
@@ -50,6 +55,9 @@
 </header>
 <div class="mobile-menu on-dark" id="mobileMenu" inert>
   <a href="#top">Inicio</a>
+  <a href="#productos">Productos</a>
+  <a href="#medida">Cortes a medida</a>
+  <a href="#consultar">Cómo consultar</a>
   <a href="#contacto">Contacto</a>
   <a class="btn" href="tel:+34981518251" data-demo-href="tel"><svg aria-hidden="true"><use href="#ic-phone"/></svg><span>Llamar al <span data-demo="telefono">981 51 82 51</span></span></a>
 </div>
@@ -72,12 +80,120 @@
       <p class="hero-desc hero-in">Empresa familiar con <strong>más de 50 años de experiencia</strong> en el aserrado de pino y, sobre todo, eucalipto. Pontón, tabla, tablón, astilla y serrín, y cortes a medida.</p>
       <div class="hero-actions hero-in">
         <a class="btn" href="tel:+34981518251" data-demo-href="tel"><svg aria-hidden="true"><use href="#ic-phone"/></svg><span>Llamar al <span data-demo="telefono">981 51 82 51</span></span></a>
-        <a class="btn btn--ghost" href="mailto:serreria@maderaslopez.es" data-demo-href="mailto"><svg aria-hidden="true"><use href="#ic-mail"/></svg>Escribir por correo</a>
+        <a class="btn btn--ghost" href="#productos"><svg aria-hidden="true"><use href="#ic-arrow-down"/></svg>Ver productos</a>
       </div>
       <p class="hero-contact hero-in">
+        <a href="mailto:serreria@maderaslopez.es" data-demo-href="mailto"><svg aria-hidden="true"><use href="#ic-mail"/></svg><span data-demo="email">serreria@maderaslopez.es</span></a>
         <span><svg aria-hidden="true"><use href="#ic-pin"/></svg><span data-demo="direccion">As Hortas - Dombodán, 15819 Arzúa (A Coruña)</span></span>
       </p>
     </div>
+  </div>
+</section>
+
+<!-- ===================== PRODUCTOS =====================
+     Solo los nombres acordados. Sin medidas, precios ni stock. Ninguna foto
+     lleva encima el nombre de un producto, de una especie ni de una calidad:
+     los nombres van en las listas y las fotos son solo ambiente. -->
+<section class="sec" id="productos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Productos</h2>
+      <p>Madera aserrada de eucalipto y de pino, más la astilla y el serrín. En esta página no hay medidas ni precios: se consultan con la serrería.</p>
+    </div>
+    <div class="prod-grid">
+      <article class="prod reveal">
+        <h3>Eucalipto</h3>
+        <ul class="prod-list">
+          <li>Pontón para estiba</li>
+          <li>Tablas para tarimas</li>
+        </ul>
+      </article>
+      <article class="prod reveal">
+        <h3>Pino</h3>
+        <ul class="prod-list">
+          <li>Tabla limpia</li>
+          <li>Tabla de carpintería</li>
+          <li>Tablón</li>
+          <li>Tabla para palets</li>
+        </ul>
+      </article>
+      <article class="prod prod--sub reveal">
+        <h3>Subproductos</h3>
+        <ul class="prod-list">
+          <li>Astilla</li>
+          <li>Serrín</li>
+        </ul>
+        <ul class="sub-grid">
+          <li class="sub-item">
+            <picture>
+              <source type="image/webp" sizes="(max-width:600px) calc(100vw - 78px), (max-width:900px) calc(50vw - 64px), 546px" srcset="assets/img/sub-astilla-400.webp 400w, assets/img/sub-astilla.webp 720w">
+              <img src="assets/img/sub-astilla-400.jpg" srcset="assets/img/sub-astilla-400.jpg 400w, assets/img/sub-astilla.jpg 720w" sizes="(max-width:600px) calc(100vw - 78px), (max-width:900px) calc(50vw - 64px), 546px" alt="Astillas de madera en primer plano" width="720" height="405" loading="lazy" decoding="async">
+            </picture>
+          </li>
+          <li class="sub-item">
+            <picture>
+              <source type="image/webp" sizes="(max-width:600px) calc(100vw - 78px), (max-width:900px) calc(50vw - 64px), 546px" srcset="assets/img/sub-serrin-400.webp 400w, assets/img/sub-serrin.webp 720w">
+              <img src="assets/img/sub-serrin-400.jpg" srcset="assets/img/sub-serrin-400.jpg 400w, assets/img/sub-serrin.jpg 720w" sizes="(max-width:600px) calc(100vw - 78px), (max-width:900px) calc(50vw - 64px), 546px" alt="Serrín y virutas de madera" width="720" height="405" loading="lazy" decoding="async">
+            </picture>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CORTES A MEDIDA ===================== -->
+<section class="sec sec--forest on-dark" id="medida">
+  <div class="wrap">
+    <div class="medida">
+      <div class="medida-copy reveal">
+        <h2>Cortes a medida</h2>
+        <p>Si tus necesidades no se ajustan a las medidas estándar, consúltanos.</p>
+        <div class="medida-actions">
+          <a class="btn" href="tel:+34981518251" data-demo-href="tel"><svg aria-hidden="true"><use href="#ic-phone"/></svg><span>Llamar al <span data-demo="telefono">981 51 82 51</span></span></a>
+          <a class="btn btn--ghost" href="mailto:serreria@maderaslopez.es" data-demo-href="mailto"><svg aria-hidden="true"><use href="#ic-mail"/></svg>Escribir por correo</a>
+        </div>
+      </div>
+      <div class="medida-foto reveal">
+        <picture>
+          <source type="image/webp" sizes="(max-width:600px) calc(100vw - 36px), (max-width:900px) calc(100vw - 44px), 530px" srcset="assets/img/medida-tablas-400.webp 400w, assets/img/medida-tablas.webp 720w">
+          <img src="assets/img/medida-tablas-400.jpg" srcset="assets/img/medida-tablas-400.jpg 400w, assets/img/medida-tablas.jpg 720w" sizes="(max-width:600px) calc(100vw - 36px), (max-width:900px) calc(100vw - 44px), 530px" alt="Cantos de tablas de madera aserrada, apiladas unas sobre otras" width="720" height="540" loading="lazy" decoding="async">
+        </picture>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CÓMO CONSULTAR ===================== -->
+<section class="sec sec--soft" id="consultar">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Cómo consultar</h2>
+      <p>Tres pasos, en este orden.</p>
+    </div>
+    <ol class="proc">
+      <li class="proc-c reveal">
+        <span class="proc-n" aria-hidden="true">1</span>
+        <div>
+          <h3>Ten a mano lo que necesitas</h3>
+          <p>El producto, la madera y las medidas. Si no encajan con una medida estándar, dilo: también hay cortes a medida.</p>
+        </div>
+      </li>
+      <li class="proc-c reveal">
+        <span class="proc-n" aria-hidden="true">2</span>
+        <div>
+          <h3>Llama o escribe por correo</h3>
+          <p>Al <a href="tel:+34981518251" data-demo-href="tel"><span data-demo="telefono">981 51 82 51</span></a> o a <a href="mailto:serreria@maderaslopez.es" data-demo-href="mailto"><span data-demo="email">serreria@maderaslopez.es</span></a>.</p>
+        </div>
+      </li>
+      <li class="proc-c reveal">
+        <span class="proc-n" aria-hidden="true">3</span>
+        <div>
+          <h3>Te responde la serrería</h3>
+          <p>La respuesta la da Maderas López directamente. En esta página no hay precios, plazos ni stock.</p>
+        </div>
+      </li>
+    </ol>
   </div>
 </section>
 
@@ -112,7 +228,8 @@
       <p><strong>Datos de contacto.</strong> El teléfono, el correo y la dirección son los que Serrería Maderas López, S.L. publica en su aviso legal y en su página de contacto. Nada de lo que aparece aquí es una oferta ni un presupuesto.</p>
       <p><strong>Sin datos inventados.</strong> Esta propuesta no publica precios, plazos, existencias, clientes ni opiniones.</p>
       <p><strong>Privacidad.</strong> Esta página no tiene formularios ni cookies y no recoge datos de quien la visita.</p>
-      <p><strong>Imágenes.</strong> Fotografía de Pexels, bajo licencia Pexels: <a href="https://www.pexels.com/photo/pile-of-wood-planks-inside-a-warehouse-12278570/" target="_blank" rel="noopener noreferrer">Mark Stebnicki</a>. Las imágenes no representan instalaciones ni productos de Maderas López.</p>
+      <p><strong>Botón de WhatsApp.</strong> El botón de WhatsApp lleva a WhiteMoon Agencia IA, no a Maderas López. Los datos que escribas allí los trata WhiteMoon Agencia IA; para ejercer tus derechos, escribe a <a href="mailto:comercial@whitemoon.es">comercial@whitemoon.es</a>.</p>
+      <p><strong>Imágenes.</strong> Fotografías de Pexels, bajo licencia Pexels: <a href="https://www.pexels.com/photo/pile-of-wood-planks-inside-a-warehouse-12278570/" target="_blank" rel="noopener noreferrer">Mark Stebnicki (pilas)</a>, <a href="https://www.pexels.com/photo/layers-of-lumber-in-close-up-photography-12278590/" target="_blank" rel="noopener noreferrer">Mark Stebnicki (tablas)</a>, <a href="https://www.pexels.com/photo/close-up-of-natural-wooden-chips-texture-35687997/" target="_blank" rel="noopener noreferrer">Valentin Ivantsov</a> y <a href="https://www.pexels.com/photo/close-up-shot-of-sawdust-8817844/" target="_blank" rel="noopener noreferrer">Ron Lach</a>. Las imágenes no representan instalaciones ni productos de Maderas López.</p>
     </div>
     <div class="foot-bottom">
       <span>Propuesta de demo · <span id="year">2026</span> · No es la web oficial de Maderas López</span>
@@ -126,6 +243,15 @@
     </div>
   </div>
 </footer>
+
+<!-- ===================== BURBUJA DE WHATSAPP =====================
+     WhatsApp de WhiteMoon Agencia IA, no de Maderas López. El href completo
+     va aquí como respaldo sin JavaScript; main.js lo regenera desde
+     config.js (número + texto con encodeURIComponent). -->
+<aside class="wa" aria-label="WhatsApp de WhiteMoon Agencia IA">
+  <p class="wa-label"><b>Demo:</b> este WhatsApp es de WhiteMoon Agencia IA</p>
+  <a class="wa-btn" href="https://wa.me/34643199580?text=Hola%2C%20vengo%20de%20la%20demo%20de%20Maderas%20L%C3%B3pez%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n." data-demo-href="wa" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp de WhiteMoon Agencia IA, no de Maderas López. Se abre en una pestaña nueva"><svg aria-hidden="true"><use href="#ic-wa"/></svg></a>
+</aside>
 
 <script src="assets/js/config.js" defer></script>
 <script src="assets/js/main.js" defer></script>

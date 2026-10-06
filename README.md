@@ -22,7 +22,7 @@ GitHub Pages está desactivado hasta que Cris lo confirme.
 ## Qué hay
 
 - `index.html`, `assets/css/style.css`, `assets/js/` — HTML, CSS y JS puros, sin frameworks ni dependencias.
-- `assets/js/config.js` — datos de contacto de la serrería en una sola constante. El HTML lleva los mismos valores como respaldo para quien navega sin JavaScript: si se cambia uno, se cambia el otro.
+- `assets/js/config.js` — datos de contacto de la serrería y, aparte, el WhatsApp de WhiteMoon Agencia IA (número y texto prellenado) en una sola constante. El HTML lleva los mismos valores como respaldo para quien navega sin JavaScript: si se cambia uno, se cambia el otro.
 - `assets/fonts/` — Bricolage Grotesque variable (licencia OFL), subset latin, auto-hospedada.
 - `scripts/verifica-contraste.py` — mide el contraste AA de la paleta y el peor píxel real de la foto bajo el texto del hero.
 
@@ -40,3 +40,12 @@ El script necesita Pillow (`pip install pillow`). Si se toca la paleta o el velo
 Fotografías de Pexels, bajo licencia Pexels, revisadas a tamaño completo: sin personas y sin rótulos ni marcas legibles.
 
 - Hero: [Mark Stebnicki](https://www.pexels.com/photo/pile-of-wood-planks-inside-a-warehouse-12278570/).
+- Cortes a medida: [Mark Stebnicki](https://www.pexels.com/photo/layers-of-lumber-in-close-up-photography-12278590/).
+- Astilla: [Valentin Ivantsov](https://www.pexels.com/photo/close-up-of-natural-wooden-chips-texture-35687997/).
+- Serrín: [Ron Lach](https://www.pexels.com/photo/close-up-shot-of-sawdust-8817844/).
+
+## Burbuja de WhatsApp
+
+Es la única captación y lleva al WhatsApp de **WhiteMoon Agencia IA**, no al de Maderas López: la etiqueta «Demo: este WhatsApp es de WhiteMoon Agencia IA» está siempre visible y el aviso legal lo repite. Ningún texto de la página invita a escribir por WhatsApp a la empresa; sus CTA son el teléfono y el correo.
+
+Es un enlace directo a una conversación (`wa.me`), sin nada más detrás. El `href` completo está escrito en `index.html` como respaldo sin JavaScript; si se cambia el número o el texto en `config.js`, hay que cambiarlo también ahí.
