@@ -17,7 +17,7 @@ GitHub Pages está desactivado hasta que Cris lo confirme.
 - Sin precios, plazos, stock, volúmenes, clientes, testimonios, certificaciones ni cifras. La única cifra es «más de 50 años».
 - Sin «prestigio», «a nivel nacional» ni superlativos.
 - Sin chatbot, sin formularios, sin Supabase y sin claves de ningún tipo en el cliente.
-- Las fotos son de Pexels y van como ambiente: no representan instalaciones ni productos de Maderas López, y ninguna se rotula como eucalipto, pino, tabla limpia ni tabla de carpintería.
+- Las fotos son de Pexels y van como ambiente: no representan instalaciones ni productos de Maderas López, y ninguna lleva encima el nombre de un producto, de una especie ni de una calidad. Los nombres van solo en las listas.
 
 ## Qué hay
 
@@ -40,12 +40,28 @@ El script necesita Pillow (`pip install pillow`). Si se toca la paleta o el velo
 Fotografías de Pexels, bajo licencia Pexels, revisadas a tamaño completo: sin personas y sin rótulos ni marcas legibles.
 
 - Hero: [Mark Stebnicki](https://www.pexels.com/photo/pile-of-wood-planks-inside-a-warehouse-12278570/).
-- Cortes a medida: [Mark Stebnicki](https://www.pexels.com/photo/layers-of-lumber-in-close-up-photography-12278590/).
-- Astilla: [Valentin Ivantsov](https://www.pexels.com/photo/close-up-of-natural-wooden-chips-texture-35687997/).
-- Serrín: [Ron Lach](https://www.pexels.com/photo/close-up-shot-of-sawdust-8817844/).
+- Banda de cortes a medida: [Mark Stebnicki](https://www.pexels.com/photo/layers-of-lumber-in-close-up-photography-12278590/).
+- Subproductos (ambiente): [Valentin Ivantsov](https://www.pexels.com/photo/close-up-of-natural-wooden-chips-texture-35687997/).
+- Subproductos (ambiente): [Ron Lach](https://www.pexels.com/photo/close-up-shot-of-sawdust-8817844/).
 
 ## Burbuja de WhatsApp
 
 Es la única captación y lleva al WhatsApp de **WhiteMoon Agencia IA**, no al de Maderas López: la etiqueta «Demo: este WhatsApp es de WhiteMoon Agencia IA» está siempre visible y el aviso legal lo repite. Ningún texto de la página invita a escribir por WhatsApp a la empresa; sus CTA son el teléfono y el correo.
 
 Es un enlace directo a una conversación (`wa.me`), sin nada más detrás. El `href` completo está escrito en `index.html` como respaldo sin JavaScript; si se cambia el número o el texto en `config.js`, hay que cambiarlo también ahí.
+
+## Pasada final (fase 3)
+
+Comprobado sobre `main` con las fases 1 y 2 fusionadas:
+
+- Contraste: `python scripts/verifica-contraste.py`, 0 fallos (paleta, hero sobre la foto real y sobre blanco puro, burbuja, etiqueta y foco).
+- Foco de teclado visible sobre claro y sobre bosque, en la burbuja y en enlaces y botones.
+- Lighthouse móvil: rendimiento 95-98 en cinco pasadas, accesibilidad 100, buenas prácticas 100. SEO 63 por `is-crawlable`, que es el `noindex` buscado.
+- Sin desbordamiento horizontal ni mensajes en consola a 320, 390, 600, 601, 900, 901, 1024 y 1440.
+- Enlaces externos y anclas sin romper; todas las imágenes con `width`, `height` y `alt`.
+
+Limitación conocida: en móviles de menos de unos 740 px de alto el hero no cabe entero en la primera pantalla, así que la burbuja queda encima de su parte baja hasta que se hace scroll. Desde 360x640 el botón «Llamar» queda libre; a 320 px de ancho no.
+
+## GitHub Pages
+
+**Desactivado.** No se activa hasta que Cris lo confirme. Cuando lo haga: Settings -> Pages -> Deploy from a branch -> `main`, carpeta `/ (root)`. La URL sería `https://nexusforgeia.github.io/WHITEMOON-MADERAS-LOPEZ/`. El repo es público y la página lleva `noindex, nofollow`, pero cualquiera con el enlace podrá verla.
