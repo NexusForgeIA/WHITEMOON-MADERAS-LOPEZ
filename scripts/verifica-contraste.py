@@ -205,21 +205,14 @@ informe('hero escritorio sobre blanco', peor(blanca, [SCRIM_DESKTOP], (0.0, 0.0,
 informe('hero movil sobre blanco', peor(blanca, [SCRIM_MOVIL], (0, 0, 1, 1)), HERO_TXT)
 informe('nav sobre blanco', peor(blanca, [NAV], (0, 0, 1, 1)), NAV_TXT)
 
-# ---- 4. SUBPRODUCTOS: nombre sobre la foto ---------------------------------
-# .sub-tag es una pastilla blanca al .95. El texto es oscuro, asi que el peor
-# fondo posible es una foto NEGRA pura debajo: no depende de que foto se use.
-print("\n=== 4 - SUBPRODUCTOS - nombre sobre una foto negra pura ===")
-tag = tuple(255 * .95 for _ in range(3))
-print(f"  pastilla blanca .95 sobre negro -> rgb({tag[0]:.0f},{tag[1]:.0f},{tag[2]:.0f})")
-comprueba('nombre - --text', ratio(hex_rgb(P['text']), tag))
-
-# ---- 5. BURBUJA DE WHATSAPP ------------------------------------------------
+# ---- 4. BURBUJA DE WHATSAPP ------------------------------------------------
+# (Ninguna foto lleva texto encima: no hay pastillas que medir.)
 # La burbuja es fija: pasa por encima de todas las secciones, claras y
 # oscuras. El icono y la etiqueta van sobre fondos OPACOS (--wa y blanco),
 # asi que su contraste no depende de lo que quede debajo. Lo que si depende
 # es el contorno (WCAG 1.4.11, 3:1): por eso lleva dos anillos, bosque por
 # dentro y blanco por fuera, y se mide cada uno contra su peor vecino.
-print("\n=== 5 - BURBUJA DE WHATSAPP ===")
+print("\n=== 4 - BURBUJA DE WHATSAPP ===")
 CLAROS = ['white', 'bg2', 'gchip', 'wchip']     # fondos de pagina claros
 OSCUROS = ['forest', 'forest2']                 # hero, banda y pie
 print("  icono y etiqueta (fondos opacos)")
