@@ -1,51 +1,72 @@
 # WHITEMOON-MADERAS-LOPEZ
 
-Propuesta de demo preparada por WhiteMoon Agencia IA para Serrería Maderas López, S.L. (Arzúa, A Coruña), una serrería de eucalipto y pino.
+Propuesta de demo de una página web, preparada por WhiteMoon Agencia IA para Maderas López, una serrería de eucalipto y pino de Arzúa (A Coruña).
 
-**No es la web oficial de la empresa** y no debe poder confundirse con ella: no usa su logo, sus fotos ni su tipografía, lleva `noindex, nofollow` y no tiene sitemap, `robots.txt`, `llms.txt`, canonical, JSON-LD ni `og:image`.
-
-GitHub Pages está desactivado hasta que Cris lo confirme.
-
-## Pendiente de confirmar con la empresa
-
-- **Texto de su web (empresa familiar, más de 50 años), confirmar con la empresa antes de enseñar.** Es lo único que la página afirma sobre su historia.
-- **FSC y NIMF 15: pendiente de confirmar con la empresa.** Hasta entonces no aparecen en la página, ni esas ni ninguna otra certificación.
-
-## Reglas de contenido
-
-- Solo los datos que dio Cris: razón social, dirección, teléfono, correo y la lista de productos. Nada más.
-- Sin precios, plazos, stock, volúmenes, clientes, testimonios, certificaciones ni cifras. La única cifra es «más de 50 años».
-- Sin «prestigio», «a nivel nacional» ni superlativos.
-- Sin chatbot, sin formularios, sin Supabase y sin claves de ningún tipo en el cliente.
-- Las fotos son de Pexels y van como ambiente: no representan instalaciones ni productos de Maderas López, y ninguna se rotula como eucalipto, pino, tabla limpia ni tabla de carpintería.
+**No es la web oficial de Maderas López.** La página lo dice en el pie, lleva la etiqueta «Propuesta de demo» junto al nombre y no usa el logo, las fotos ni la tipografía de la empresa.
 
 ## Qué hay
 
-- `index.html`, `assets/css/style.css`, `assets/js/` — HTML, CSS y JS puros, sin frameworks ni dependencias.
-- `assets/js/config.js` — datos de contacto de la serrería y, aparte, el WhatsApp de WhiteMoon Agencia IA (número y texto prellenado) en una sola constante. El HTML lleva los mismos valores como respaldo para quien navega sin JavaScript: si se cambia uno, se cambia el otro.
+- `index.html` — la página, de una sola pantalla larga: hero, productos, cortes a medida, cómo consultar y pie con el contacto y el aviso legal.
+- `assets/css/style.css` — estilos. Los colores son variables en `:root`; los puntos de corte son 900 px y 600 px.
+- `assets/js/config.js` — los datos de contacto y los de la burbuja de WhatsApp, en una sola constante.
+- `assets/js/main.js` — pinta esos datos en la página, el menú móvil, el marcado de la sección activa y la entrada de las secciones al hacer scroll.
 - `assets/fonts/` — Bricolage Grotesque variable (licencia OFL), subset latin, auto-hospedada.
-- `scripts/verifica-contraste.py` — mide el contraste AA de la paleta y el peor píxel real de la foto bajo el texto del hero.
+- `assets/img/` — fotografías en JPG y WebP, a dos anchos.
+- `scripts/verifica-contraste.py` — mide el contraste de la paleta.
+
+HTML, CSS y JavaScript puros, sin frameworks, sin dependencias y sin peticiones a terceros. No hay formularios, cookies ni analítica: la página no recoge datos.
+
+## Burbuja de WhatsApp
+
+El botón flotante lleva al WhatsApp de **WhiteMoon Agencia IA**, no al de Maderas López. La etiqueta «Demo: este WhatsApp es de WhiteMoon Agencia IA» está siempre visible a su lado y el aviso legal del pie lo repite. Los contactos de la serrería que muestra la página son el teléfono y el correo.
+
+Es un enlace directo a una conversación (`wa.me`) con un mensaje prellenado. El número y el texto están en `config.js`; el enlace completo también está escrito en `index.html` para quien navega sin JavaScript, así que si se cambia uno hay que cambiar el otro.
+
+## Indexación
+
+La página lleva `<meta name="robots" content="noindex, nofollow">` y no tiene `robots.txt`, sitemap, canonical, datos estructurados ni etiquetas Open Graph. Es una propuesta y no debe aparecer en buscadores como si fuera la web de la empresa.
 
 ## Probar en local
 
 ```
 python -m http.server 8765
+```
+
+y abrir `http://localhost:8765/`.
+
+## Cómo se comprueba
+
+**Contraste.** Necesita Pillow (`pip install pillow`):
+
+```
 python scripts/verifica-contraste.py
 ```
 
-El script necesita Pillow (`pip install pillow`). Si se toca la paleta o el velo del hero en `style.css`, hay que tocarlos igual en el script.
+Comprueba que todo el texto supera 4,5:1 (WCAG AA) y que los contornos y el foco superan 3:1. Mide los pares de la paleta, el peor píxel real de la foto bajo el texto del hero a diez tamaños de pantalla, el mismo velo sobre una foto blanca pura, y la burbuja de WhatsApp sobre fondos claros y oscuros. Sale con código 1 si algo falla. Los colores y el velo del hero están duplicados en el script: si se tocan en `style.css`, hay que tocarlos ahí también.
+
+**Resto.** Con Lighthouse en modo móvil y con el navegador:
+
+- Rendimiento, accesibilidad y buenas prácticas de Lighthouse. La nota de SEO sale baja a propósito, por el `noindex`.
+- Sin desplazamiento horizontal y sin mensajes en la consola entre 320 px y 1440 px de ancho.
+- Foco de teclado visible sobre fondo claro y sobre fondo oscuro.
+- Enlaces y botones con al menos 44 px de alto; la burbuja mide 56 px.
+- Todas las imágenes con `width`, `height` y `alt`.
+- El enlace de la burbuja es el mismo con y sin JavaScript.
+
+En local, `main.js` avisa por consola si la página se desborda en horizontal.
+
+## Limitación conocida
+
+En pantallas de menos de unos 740 px de alto, la burbuja de WhatsApp puede quedar sobre la parte baja del hero hasta que se hace scroll.
 
 ## Imágenes
 
-Fotografías de Pexels, bajo licencia Pexels, revisadas a tamaño completo: sin personas y sin rótulos ni marcas legibles.
+Fotografías de Pexels, bajo licencia Pexels. Son imágenes de ambiente: no representan instalaciones ni productos de Maderas López.
 
-- Hero: [Mark Stebnicki](https://www.pexels.com/photo/pile-of-wood-planks-inside-a-warehouse-12278570/).
-- Cortes a medida: [Mark Stebnicki](https://www.pexels.com/photo/layers-of-lumber-in-close-up-photography-12278590/).
-- Astilla: [Valentin Ivantsov](https://www.pexels.com/photo/close-up-of-natural-wooden-chips-texture-35687997/).
-- Serrín: [Ron Lach](https://www.pexels.com/photo/close-up-shot-of-sawdust-8817844/).
+- [Mark Stebnicki](https://www.pexels.com/photo/pile-of-wood-planks-inside-a-warehouse-12278570/) — hero.
+- [Mark Stebnicki](https://www.pexels.com/photo/layers-of-lumber-in-close-up-photography-12278590/) — banda de cortes a medida.
+- [Valentin Ivantsov](https://www.pexels.com/photo/close-up-of-natural-wooden-chips-texture-35687997/) y [Ron Lach](https://www.pexels.com/photo/close-up-shot-of-sawdust-8817844/) — bloque de subproductos.
 
-## Burbuja de WhatsApp
+## Publicación
 
-Es la única captación y lleva al WhatsApp de **WhiteMoon Agencia IA**, no al de Maderas López: la etiqueta «Demo: este WhatsApp es de WhiteMoon Agencia IA» está siempre visible y el aviso legal lo repite. Ningún texto de la página invita a escribir por WhatsApp a la empresa; sus CTA son el teléfono y el correo.
-
-Es un enlace directo a una conversación (`wa.me`), sin nada más detrás. El `href` completo está escrito en `index.html` como respaldo sin JavaScript; si se cambia el número o el texto en `config.js`, hay que cambiarlo también ahí.
+Sitio estático: se sirve tal cual desde la raíz de la rama `main`, sin paso de compilación.
