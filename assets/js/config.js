@@ -17,4 +17,13 @@ window.DEMO = Object.freeze({
   telefonoE164: "+34981518251",
   email: "serreria@maderaslopez.es",
   direccion: "As Hortas - Dombodán, 15819 Arzúa (A Coruña)",
+
+  /* Burbuja de WhatsApp. Es el WhatsApp de WhiteMoon Agencia IA, NO el de
+     Maderas López: la página lo etiqueta siempre como tal. `numero` va en
+     formato wa.me (prefijo de país, sin «+» ni espacios) y `texto` es el
+     mensaje prellenado; main.js lo codifica con encodeURIComponent. */
+  whatsapp: Object.freeze({
+    numero: "34643199580",
+    texto: "Hola, vengo de la demo de Maderas López y quiero más información.",
+  }),
 });

@@ -36,6 +36,7 @@ P = dict(
     ondark='#f1f5ee', ondarkmuted='#afc2b3',
     g='#3f9a5f', gdark='#1f6a3d', gdeep='#175230', gleaf='#93d3a4', gchip='#e3efe5',
     w='#e3a557', whover='#d69441', wdeep='#7d4a10', wchip='#f8ecd9',
+    wa='#25d366', waink='#0b2415',
 )
 
 fallos = []
@@ -203,6 +204,47 @@ blanca = Image.new('RGB', (200, 200), (255, 255, 255))
 informe('hero escritorio sobre blanco', peor(blanca, [SCRIM_DESKTOP], (0.0, 0.0, TEXTO_HASTA, 1.0)), HERO_TXT)
 informe('hero movil sobre blanco', peor(blanca, [SCRIM_MOVIL], (0, 0, 1, 1)), HERO_TXT)
 informe('nav sobre blanco', peor(blanca, [NAV], (0, 0, 1, 1)), NAV_TXT)
+
+# ---- 4. SUBPRODUCTOS: nombre sobre la foto ---------------------------------
+# .sub-tag es una pastilla blanca al .95. El texto es oscuro, asi que el peor
+# fondo posible es una foto NEGRA pura debajo: no depende de que foto se use.
+print("\n=== 4 - SUBPRODUCTOS - nombre sobre una foto negra pura ===")
+tag = tuple(255 * .95 for _ in range(3))
+print(f"  pastilla blanca .95 sobre negro -> rgb({tag[0]:.0f},{tag[1]:.0f},{tag[2]:.0f})")
+comprueba('nombre - --text', ratio(hex_rgb(P['text']), tag))
+
+# ---- 5. BURBUJA DE WHATSAPP ------------------------------------------------
+# La burbuja es fija: pasa por encima de todas las secciones, claras y
+# oscuras. El icono y la etiqueta van sobre fondos OPACOS (--wa y blanco),
+# asi que su contraste no depende de lo que quede debajo. Lo que si depende
+# es el contorno (WCAG 1.4.11, 3:1): por eso lleva dos anillos, bosque por
+# dentro y blanco por fuera, y se mide cada uno contra su peor vecino.
+print("\n=== 5 - BURBUJA DE WHATSAPP ===")
+CLAROS = ['white', 'bg2', 'gchip', 'wchip']     # fondos de pagina claros
+OSCUROS = ['forest', 'forest2']                 # hero, banda y pie
+print("  icono y etiqueta (fondos opacos)")
+comprueba('icono --waink sobre --wa', ratio(hex_rgb(P['waink']), hex_rgb(P['wa'])))
+comprueba('etiqueta: --text sobre blanco', ratio(hex_rgb(P['text']), hex_rgb(P['white'])))
+print("  contorno del boton")
+comprueba('anillo --forest contra el relleno --wa', ratio(hex_rgb(P['forest']), hex_rgb(P['wa'])), AA_UI)
+comprueba('anillo --forest contra el anillo blanco', ratio(hex_rgb(P['forest']), hex_rgb(P['white'])), AA_UI)
+for f in OSCUROS:
+    comprueba(f'anillo blanco sobre pagina --{f}', ratio(hex_rgb(P['white']), hex_rgb(P[f])), AA_UI)
+print("  contorno de la etiqueta")
+comprueba('borde --forest contra el relleno blanco', ratio(hex_rgb(P['forest']), hex_rgb(P['white'])), AA_UI)
+for f in OSCUROS:
+    comprueba(f'anillo blanco sobre pagina --{f}', ratio(hex_rgb(P['white']), hex_rgb(P[f])), AA_UI)
+print("  sobre claro el anillo blanco se funde con la pagina: manda el bosque")
+for f in CLAROS:
+    comprueba(f'anillo --forest visto contra pagina --{f}', ratio(hex_rgb(P['forest']), hex_rgb(P[f])), AA_UI)
+print("  foco visible (anillo bosque entre dos blancos)")
+for f in CLAROS:
+    comprueba(f'foco --forest sobre pagina --{f}', ratio(hex_rgb(P['forest']), hex_rgb(P[f])), AA_UI)
+for f in OSCUROS:
+    comprueba(f'foco: halo blanco sobre pagina --{f}', ratio(hex_rgb(P['white']), hex_rgb(P[f])), AA_UI)
+print("  enlaces del pie y de «Como consultar»")
+comprueba('--gleaf sobre --forest - enlace del aviso legal', ratio(hex_rgb(P['gleaf']), hex_rgb(P['forest'])))
+comprueba('--gdark sobre --bg2 - telefono y correo del paso 2', ratio(hex_rgb(P['gdark']), hex_rgb(P['bg2'])))
 
 # ---------------------------------------------------------------------------
 print()
