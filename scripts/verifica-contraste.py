@@ -190,14 +190,14 @@ for vw, vh in ((901, 700), (1024, 768), (1280, 800), (1440, 900), (1920, 1080)):
     informe(f'hero {vw}', peor(caja, [SCRIM_DESKTOP], (0.0, 0.0, TEXTO_HASTA, 1.0)), HERO_TXT)
     # En escritorio la nav lleva su texto a la derecha, sobre la parte clara
     # del velo: se mide a todo el ancho.
-    informe(f'nav {vw}', peor(caja, [NAV, SCRIM_DESKTOP], (0.0, 0.0, 1.0, 76 / vh)), NAV_TXT)
+    informe(f'nav {vw}', peor(caja, [NAV, SCRIM_DESKTOP], (0.0, 0.0, 1.0, 84 / vh)), NAV_TXT)
 
 im = Image.open(os.path.join(IMG, 'hero-pilas-900.jpg')).convert('RGB')
 for vw, vh in ((360, 740), (390, 844), (600, 900), (768, 1024), (900, 700)):
     print(f"\n[{vw}x{vh} - movil] texto a todo el ancho, velo casi plano")
     caja = cover(im, vw, vh)
     informe(f'hero {vw}', peor(caja, [SCRIM_MOVIL], (0.0, 0.0, 1.0, 1.0)), HERO_TXT)
-    informe(f'nav {vw}', peor(caja, [NAV, SCRIM_MOVIL], (0.0, 0.0, 1.0, 76 / vh)), NAV_TXT)
+    informe(f'nav {vw}', peor(caja, [NAV, SCRIM_MOVIL], (0.0, 0.0, 1.0, 84 / vh)), NAV_TXT)
 
 print("\n=== 3 - Peor caso absoluto - una foto blanca pura debajo ===")
 blanca = Image.new('RGB', (200, 200), (255, 255, 255))
@@ -238,6 +238,25 @@ for f in OSCUROS:
 print("  enlaces del pie y de «Como consultar»")
 comprueba('--gleaf sobre --forest - enlace del aviso legal', ratio(hex_rgb(P['gleaf']), hex_rgb(P['forest'])))
 comprueba('--gdark sobre --bg2 - telefono y correo del paso 2', ratio(hex_rgb(P['gdark']), hex_rgb(P['bg2'])))
+
+# ---- 5. LOGO DE LA NAV -----------------------------------------------------
+# El logo es oscuro y va sobre una pastilla blanca opaca. Se mide la tinta
+# real del rotulo (media de sus pixeles oscuros en el original), la pastilla
+# contra la nav y el anillo de foco, que va por fuera de la pastilla, sobre
+# la nav. "Peor caso" es la nav al .88 con una foto blanca pura debajo.
+print("\n=== 5 - LOGO DE LA NAV ===")
+logo = Image.open(os.path.join(ROOT, 'assets', 'logo-maderas-lopez.jpeg')).convert('RGB')
+rotulo = [p for p in logo.crop((550, 150, 1545, 350)).get_flattened_data() if sum(p) < 200]
+tinta = tuple(sum(p[i] for p in rotulo) / len(rotulo) for i in range(3))
+BLANCO = hex_rgb(P['white'])
+NAV_PEOR = sobre(.88, (255, 255, 255))
+print(f"  tinta del rotulo -> rgb({tinta[0]:.0f},{tinta[1]:.0f},{tinta[2]:.0f}) - nav en su peor caso -> rgb({NAV_PEOR[0]:.0f},{NAV_PEOR[1]:.0f},{NAV_PEOR[2]:.0f})")
+comprueba('rotulo del logo sobre la pastilla blanca', ratio(tinta, BLANCO))
+comprueba('pastilla blanca contra --forest', ratio(BLANCO, FOREST), AA_UI)
+comprueba('pastilla blanca contra la nav en su peor caso', ratio(BLANCO, NAV_PEOR), AA_UI)
+comprueba('etiqueta DEMO: --text sobre --w', ratio(hex_rgb(P['text']), hex_rgb(P['w'])))
+comprueba('foco --w contra --forest', ratio(hex_rgb(P['w']), FOREST), AA_UI)
+comprueba('foco --w contra la nav en su peor caso', ratio(hex_rgb(P['w']), NAV_PEOR), AA_UI)
 
 # ---------------------------------------------------------------------------
 print()
